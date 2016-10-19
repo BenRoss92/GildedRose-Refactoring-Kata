@@ -13,8 +13,8 @@ class GildedRose
         if item.sell_in <= 0
           item.quality -= 2
         end
-        item.sell_in -= 1
       end
+        item.sell_in -= 1
     end
   end
 
