@@ -2,12 +2,12 @@ require 'gilded_rose'
 
 describe GildedRose do
 
-  describe "#update_quality" do
-    it "does not change the name" do
-      items = [Item.new("foo", 0, 0)]
-      GildedRose.new(items).update_quality()
-      expect(items[0].name).to eq "fixme"
-    end
+  it 'quality should never be negative after updating' do
+    item = Item.new(name="bread", sell_in=0, quality=0)
+    items = [item]
+    gilded_rose = described_class.new(items)
+    gilded_rose.update_quality
+    expect(item.quality).to eq(0)
   end
 
 end
