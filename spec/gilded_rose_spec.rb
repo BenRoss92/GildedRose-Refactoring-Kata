@@ -158,7 +158,7 @@ describe GildedRose do
 
     describe 'Backstage passes to a TAFKAL80ETC concert' do
 
-      context 'sell_in days above 10 and quality is 49' do
+      context 'sell_in days is above 10 and quality is 49' do
         it 'quality increases to 50' do
           item = Item.new('Backstage passes to a TAFKAL80ETC concert', sell_in=15, quality=49)
           items = [item]
@@ -200,7 +200,7 @@ describe GildedRose do
           n.times do |x|
             gilded_rose.update_quality
           end
-          expect(item.quality).to eq(n * 2)
+          expect(item.quality).to eq(quality + (n * 2))
         end
       end
 
