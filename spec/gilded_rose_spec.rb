@@ -6,30 +6,30 @@ describe GildedRose do
 
     describe 'sell_in days' do
       it 'decreases sell_in by 1 after each day' do
-        item = Item.new(name="Normal Item", sell_in=1, quality=0)
+        item = Item.new(name="Normal Item", sell_in=1, quality=1)
         items = [item]
         gilded_rose = described_class.new(items)
-        gilded_rose.update_quality
+        gilded_rose.normal_update_quality
         expect(item.sell_in).to eq(0)
       end
 
       it 'decreases sell_in by number of days passed' do
         n = 3
-        item = Item.new(name="Normal Item", sell_in=n, quality=0)
+        item = Item.new(name="Normal Item", sell_in=n, quality=1)
         items = [item]
         gilded_rose = described_class.new(items)
         n.times do |x|
-          gilded_rose.update_quality
+          gilded_rose.normal_update_quality
           expect(item.sell_in).to eq(n - (x + 1))
         end
         expect(item.sell_in).to eq(0)
       end
 
       it 'sell_in days can be negative' do
-        item = Item.new(name = "Normal Item", sell_in=0, quality=0)
+        item = Item.new(name = "Normal Item", sell_in=0, quality=1)
         items = [item]
         gilded_rose = described_class.new(items)
-        gilded_rose.update_quality
+        gilded_rose.normal_update_quality
         expect(item.sell_in).to eq(-1)
       end
 
@@ -42,7 +42,7 @@ describe GildedRose do
           item = Item.new(name="Normal Item", sell_in=0, quality=0)
           items = [item]
           gilded_rose = described_class.new(items)
-          gilded_rose.update_quality
+          gilded_rose.normal_update_quality
           expect(item.quality).to eq(0)
         end
 
@@ -50,7 +50,7 @@ describe GildedRose do
           item = Item.new(name="Normal Item", sell_in=2, quality=50)
           items = [item]
           gilded_rose = described_class.new(items)
-          gilded_rose.update_quality
+          gilded_rose.normal_update_quality
           expect(item.quality).to be <=(50)
         end
 
@@ -58,7 +58,7 @@ describe GildedRose do
           item = Item.new('Normal Item', sell_in=1, quality=1)
           items = [item]
           gilded_rose = described_class.new(items)
-          gilded_rose.update_quality
+          gilded_rose.normal_update_quality
           expect(item.quality).to eq 0
         end
 
@@ -68,7 +68,7 @@ describe GildedRose do
           items = [item]
           gilded_rose = described_class.new(items)
           n.times do |x|
-            gilded_rose.update_quality
+            gilded_rose.normal_update_quality
           end
           expect(item.quality).to eq 0
         end
@@ -82,7 +82,7 @@ describe GildedRose do
           gilded_rose = described_class.new(items)
           n = 3
           n.times do |x|
-            gilded_rose.update_quality
+            gilded_rose.normal_update_quality
           end
           expect(item.quality).to eq(quality - (n * 2))
         end
@@ -94,7 +94,7 @@ describe GildedRose do
           gilded_rose = described_class.new(items)
           n = 3
           n.times do |x|
-            gilded_rose.update_quality
+            gilded_rose.normal_update_quality
           end
           expect(item.quality).to eq (quality - (2 * n))
         end
