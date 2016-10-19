@@ -20,9 +20,8 @@ describe GildedRose do
         gilded_rose = described_class.new(items)
         n.times do |x|
           gilded_rose.normal_update_quality
-          expect(item.sell_in).to eq(n - (x + 1))
         end
-        expect(item.sell_in).to eq(0)
+        expect(item.sell_in).to eq(2)
       end
 
       it 'sell_in days can be negative' do
