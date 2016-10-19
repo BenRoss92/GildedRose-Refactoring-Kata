@@ -2,7 +2,7 @@ require 'gilded_rose'
 
 describe GildedRose do
 
-describe 'normal item' do
+  describe 'normal item' do
 
     describe 'quality' do
       it 'should never be negative after updating' do
@@ -83,5 +83,24 @@ describe 'normal item' do
       end
 
     end
+
+    describe 'Sulfuras, Hand of Ragnaros' do
+      it 'sell_in days do not decrease' do
+        item = Item.new(name="Sulfuras, Hand of Ragnaros", sell_in=2, quality=49)
+        items = [item]
+        gilded_rose = described_class.new(items)
+        gilded_rose.update_quality
+        expect(item.sell_in).to be(2)
+      end
+
+      it 'quality does not decrease' do
+        item = Item.new(name="Sulfuras, Hand of Ragnaros", sell_in=2, quality=49)
+        items = [item]
+        gilded_rose = described_class.new(items)
+        gilded_rose.update_quality
+        expect(item.quality).to be(49)
+      end
+    end
+
 
   end
