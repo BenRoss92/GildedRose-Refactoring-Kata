@@ -6,7 +6,7 @@ describe GildedRose do
 
     describe 'sell_in days' do
       it 'decreases sell_in by 1 after each day' do
-        item = Item.new(name="Normal Item", sell_in=1, quality=1)
+        item = Item.new(name="Normal Item", sell_in=1, quality=0)
         items = [item]
         gilded_rose = described_class.new(items)
         gilded_rose.update_quality
@@ -15,7 +15,7 @@ describe GildedRose do
 
       it 'decreases sell_in by number of days passed' do
         n = 3
-        item = Item.new(name="Normal Item", sell_in=n, quality=1)
+        item = Item.new(name="Normal Item", sell_in=n, quality=0)
         items = [item]
         gilded_rose = described_class.new(items)
         n.times do |x|
@@ -25,7 +25,7 @@ describe GildedRose do
       end
 
       it 'sell_in days can be negative' do
-        item = Item.new(name = "Normal Item", sell_in=0, quality=1)
+        item = Item.new(name = "Normal Item", sell_in=0, quality=0)
         items = [item]
         gilded_rose = described_class.new(items)
         gilded_rose.update_quality
